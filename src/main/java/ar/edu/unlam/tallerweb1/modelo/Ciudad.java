@@ -13,7 +13,7 @@ public class Ciudad {
 	private Long id;
 	
 	private String nombre;
-	private Double ubiacionGeografica;
+	private Double ubicacionGeografica;
 	private String pais;
 	
 	public Long getId() {
@@ -28,11 +28,11 @@ public class Ciudad {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Double getUbiacionGeografica() {
-		return ubiacionGeografica;
+	public Double getUbicacionGeografica() {
+		return ubicacionGeografica;
 	}
-	public void setUbiacionGeografica(Double ubiacionGeografica) {
-		this.ubiacionGeografica = ubiacionGeografica;
+	public void setUbicacionGeografica(Double ubiacionGeografica) {
+		this.ubicacionGeografica = ubiacionGeografica;
 	}
 	public String getPais() {
 		return pais;

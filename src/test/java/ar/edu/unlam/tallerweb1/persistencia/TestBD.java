@@ -81,6 +81,8 @@ public class TestBD extends SpringTest{
 		Pais pais2 = new Pais();
 		Pais pais3 = new Pais();
 		
+		//La latitud del tropico de cancer es de 23°26'14''
+		
 		Ubicacion ubicacion1 = new Ubicacion();
 		ubicacion1.setLatitud(24.26);
 		
@@ -112,14 +114,52 @@ public class TestBD extends SpringTest{
 		
 		
 		List <Pais> listaPaisesTropico = getSession().createCriteria(Pais.class)
-					.createAlias("ciudad", "CapitalBuscada")
-					.add(Restrictions.gt("CapitalBuscada.ubicacion",23.16))
+					.createAlias("capital", "CapitalBuscada")
+					.createAlias("CapitalBuscada.ubicacionGeografica", "UbicacionBuscada")
+					.add(Restrictions.gt("UbicacionBuscada.latitud",23.16))
 					.list();
 		
 		for (Pais item : listaPaisesTropico) {
-			assertThat(item.getCapital().getUbicacionGeografica().getLatitud()).isGreaterThan(23.26);
+			assertThat(item.getCapital().getUbicacionGeografica().getLatitud()).isGreaterThan(23.16);
 		}
 	
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testQueBusqueCiudadesDeHeemisferioSur() {
+		
+		Ciudad ciudad1 = new Ciudad();
+		Ciudad ciudad2 = new Ciudad();
+		Ciudad ciudad3 = new Ciudad();
+		
+		Ubicacion ubicaion1 = new Ubicacion();
+		ubicaion1.setLatitud(-10.45);
+		
+		Ubicacion ubicaion2 = new Ubicacion();
+		ubicaion1.setLatitud(40.45);
+		
+		Ubicacion ubicaion3 = new Ubicacion();
+		ubicaion1.setLatitud(-60.45);
+		
+		ciudad1.setUbicacionGeografica(ubicaion1);
+		ciudad1.setUbicacionGeografica(ubicaion2);
+		ciudad1.setUbicacionGeografica(ubicaion3);
+		
+		getSession().save(ciudad1);
+		getSession().save(ciudad1);
+		getSession().save(ciudad1);
+		
+		List <Ciudad> listaDeCiudadesSur = getSession().createCriteria(Ciudad.class)
+					.createAlias("ubicacionGeografica", "UbicacionBuscada")
+					.add(Restrictions.le("UbicacionBuscada.latitud",0.0))
+					.list();
+		
+		for (Ciudad item : listaDeCiudadesSur) {
+			assertThat(item.getUbicacionGeografica().getLatitud()).isLessThan(0.0);
+		}
+					
 	}
 
 }

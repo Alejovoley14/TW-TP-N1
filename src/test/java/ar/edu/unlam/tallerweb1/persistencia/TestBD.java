@@ -144,8 +144,8 @@ public class TestBD extends SpringTest{
 		ubicaion1.setLatitud(-60.45);
 		
 		ciudad1.setUbicacionGeografica(ubicaion1);
-		ciudad1.setUbicacionGeografica(ubicaion2);
-		ciudad1.setUbicacionGeografica(ubicaion3);
+		ciudad2.setUbicacionGeografica(ubicaion2);
+		ciudad3.setUbicacionGeografica(ubicaion3);
 		
 		getSession().save(ciudad1);
 		getSession().save(ciudad1);

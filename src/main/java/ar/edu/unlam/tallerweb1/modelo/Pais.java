@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,9 @@ public class Pais {
 	private String nombre;
 	private Integer habitantes;
 	private String idioma;
-	private String capital;
+	private Ciudad capital;
 	
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Continente continente;
 
 	
@@ -46,10 +47,11 @@ public class Pais {
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-	public String getCapital() {
+
+	public Ciudad getCapital() {
 		return capital;
 	}
-	public void setCapital(String capital) {
+	public void setCapital(Ciudad capital) {
 		this.capital = capital;
 	}
 	public Continente getContinente() {

@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Ubicacion {
@@ -16,15 +15,6 @@ public class Ubicacion {
 	private Double latitud;
 	private Double longitud;
 	
-	@OneToOne
-	private Ciudad ciudad;
-	
-	public Ciudad getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(Ciudad ciudad) {
-		this.ciudad = ciudad;
-	}
 	public Long getId() {
 		return id;
 	}

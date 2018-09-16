@@ -148,8 +148,8 @@ public class TestBD extends SpringTest{
 		ciudad3.setUbicacionGeografica(ubicaion3);
 		
 		getSession().save(ciudad1);
-		getSession().save(ciudad1);
-		getSession().save(ciudad1);
+		getSession().save(ciudad2);
+		getSession().save(ciudad3);
 		
 		List <Ciudad> listaDeCiudadesSur = getSession().createCriteria(Ciudad.class)
 					.createAlias("ubicacionGeografica", "UbicacionBuscada")

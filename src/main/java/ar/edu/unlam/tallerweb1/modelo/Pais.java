@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pais {
@@ -17,7 +18,9 @@ public class Pais {
 	private String nombre;
 	private Integer habitantes;
 	private String idioma;
-	private String capital;
+	
+	@OneToOne (cascade = CascadeType.ALL)
+	private Ciudad capital;
 	
 	@ManyToOne (cascade = CascadeType.ALL)
 	private Continente continente;
@@ -47,10 +50,11 @@ public class Pais {
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-	public String getCapital() {
+
+	public Ciudad getCapital() {
 		return capital;
 	}
-	public void setCapital(String capital) {
+	public void setCapital(Ciudad capital) {
 		this.capital = capital;
 	}
 	public Continente getContinente() {

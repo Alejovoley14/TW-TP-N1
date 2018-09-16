@@ -112,8 +112,9 @@ public class TestBD extends SpringTest{
 		
 		
 		List <Pais> listaPaisesTropico = getSession().createCriteria(Pais.class)
-					.createAlias("ciudad", "CapitalBuscada")
-					.add(Restrictions.gt("CapitalBuscada.ubicacion",23.16))
+					.createAlias("capital", "CapitalBuscada")
+					.createAlias("CapitalBuscada.ubicacionGeografica", "UbicacionBuscada")
+					.add(Restrictions.gt("UbicacionBuscada.latitud",23.16))
 					.list();
 		
 		for (Pais item : listaPaisesTropico) {

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Pais {
 	private String idioma;
 	private String capital;
 	
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Continente continente;
 
 	
